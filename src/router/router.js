@@ -155,12 +155,6 @@ const routes = [{
 					}
 				]
 			},
-			{
-				path: '/kpi',
-				name: 'kpi',
-				meta: {title: '绩效考核'},
-				component: () => import('../pages/index/kpi/List.vue'),
-			},
 		]
 	}	
 ]
