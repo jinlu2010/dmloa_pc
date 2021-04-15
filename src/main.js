@@ -18,10 +18,12 @@ axios.interceptors.request.use(config => {
 }, error => {
     return Promise.reject(error)
 })
+
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueRouter)
+
 
 new Vue({
 	router,

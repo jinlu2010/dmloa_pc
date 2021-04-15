@@ -14,25 +14,9 @@ const routes = [{
 		component: () => import('../pages/login/Login.vue')
 	},
 	{
-		path: '/register',
-		name: 'register',
-		meta: {title: '注册'},
-		component: () => import('../pages/login/Register.vue')
-	},
-	{
 		path: '/breadcrumb',
 		name: 'breadcrumb',
 		component: () => import('../pages/index/Breadcrumb.vue')
-	},
-	{
-		path: '/nav',
-		name: 'nav',
-		component: () => import('../pages/Nav.vue')
-	},
-	{
-		path: '/navitem',
-		name: 'navitem',
-		component: () => import('../pages/NavItem.vue')
 	},
 	
 	{
@@ -186,9 +170,9 @@ const router = new VueRouter({
 })
 
 /*router.beforeEach(function(to,from,next){
-	if(!sessionStorage.getItem('username')){
-		if(to.path !='/login'){
-			next('/login')
+	if(!localStorage.getItem('token')){
+		if(to.path!='/login'){
+			next('/login');
 		}
 	};
 	next()

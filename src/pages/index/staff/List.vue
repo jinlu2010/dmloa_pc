@@ -1,6 +1,6 @@
 <template>
 	<el-container>
-		<el-aside class="staffMenu" width="150px">
+		<el-aside class="staffMenu" width="200px">
 			<StaffMenu></StaffMenu>
 		</el-aside>
 		<el-main class="staffTable">
