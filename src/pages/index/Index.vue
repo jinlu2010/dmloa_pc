@@ -3,7 +3,7 @@
 		<el-container :style="{height:winHeight}">
 			<el-aside width="250px">
 				<el-menu :default-openeds="['/staff','/company','/project']" default-active="/staff/list" class="el-menu-vertical-demo" background-color="#004343" text-color="#fff" active-text-color="#5ef3b3" router>
-					<div class="avatar"><img src="@/assets/img/userface.png"></div>
+					<img :src="avatar" class="userface">
 					<el-submenu index="/staff">
 						<template slot="title">
 							<i class="el-icon-menu"></i>
@@ -38,6 +38,7 @@
 			<el-container>
 				<el-header>
 					<Breadcrumb></Breadcrumb>
+					<div class="name">欢迎您，{{companyname}}</div>
 					<el-button type="primary" round class="signup">退出</el-button>
 				</el-header>
 
@@ -60,11 +61,26 @@
 		data() {
 			return {
 				winHeight: '',
+				avatar: '',
+				companyname: '',
 			}
 		},
 		created() {
 			let h = document.documentElement.clientHeight || document.body.clientHeight;
 			this.winHeight= h + 'px';
+			
+			let staffid = window.localStorage.getItem("logintoken");
+			let params = new URLSearchParams();
+			params.append("staffid", staffid);
+			let that = this;
+			that.axios.post('api/companylist/', params)
+			  .then(function (resp) {
+				  that.companyname = resp.data[0].companyname;
+				  that.avatar = resp.data[0].logo;
+			  })
+			  .catch(function (error) {
+				  console.log(error);
+			  });
 		}
 	}
 </script>
@@ -72,5 +88,13 @@
 <style>
 	.el-main{
 		background-color: #FFFFFF;
+	}
+	.name{
+		color:#333333;
+		position: absolute;
+		font-size: 14px;
+		right: 120px;
+		top: 0;
+		line-height: 80px;
 	}
 </style>

@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<el-form ref="form" :model="form" label-width="80px">
-			<el-form-item label="部门名称">
-				<el-input v-model="form.deptname"></el-input>
+			<el-form-item label="部门名称" class="deptname">
+				<el-input v-model="form.deptname"></el-input><span>部</span>
 			</el-form-item>
 			<el-form-item label="部门意义">
 				<el-input type="textarea" v-model="form.deptsense"></el-input>
@@ -34,26 +34,29 @@
 		},
 		methods: {
 			addDept: function() {
-				let that = this;
 				let data={
-					name:this.form.deptname,
-					intro:this.form.deptsense,
-					target:this.form.deptgoal,
+					name:this.form.deptname+'部',
+					sense:this.form.deptsense,
+					goal:this.form.deptgoal,
 					duty:this.form.deptduty,
 				}
-				this.axios.post('http://47.100.125.167:7080/dept​/create', data)
+				let dept = JSON.stringify(data);
+				console.log(dept);
+				let params = new URLSearchParams();
+				params.append("dept", dept);
+				this.axios.post('api/addDept/', params)
 				.then(res => {
 					console.log(res)
 					if (res.data.code == 0) {
 						alert('恭喜您，创建部门成功！');
-						let token = res.data.data.token;
+						let token = res.data.deptid
+						localStorage.setItem('depttoken', token);
 					} else {
-						that.message = res.data.message
-						alert(that.message)
+						this.message = res.data.message
+						alert(this.message)
 					}
 				})
-			}
-				
+			}	
 		}
 	}
 </script>

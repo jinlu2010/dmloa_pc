@@ -47,10 +47,16 @@ const routes = [{
 								component: () => import('../pages/index/staff/staff/Kpi.vue')
 							},
 							{
-								path: '/staff/staff/edit',
-								name: 'staffedit',
-								meta: {title: '详细信息'},
-								component: () => import('../pages/index/staff/staff/Edit.vue')
+								path: '/staff/staff/editstaff',
+								name: 'editstaff',
+								meta: {title: '编辑员工'},
+								component: () => import('../pages/index/staff/staff/editStaff.vue')
+							},
+							{
+								path: '/staff/staff/editpost',
+								name: 'editpost',
+								meta: {title: '编辑岗位'},
+								component: () => import('../pages/index/staff/staff/editPost.vue')
 							}
 						]
 					},
@@ -78,18 +84,6 @@ const routes = [{
 						meta: {title: '添加员工'},
 						component: () => import('../pages/index/staff/addStaff.vue')
 					},
-					{
-						path: '/staff/menu',
-						name: 'staffmenu',
-						meta: {title: '岗位列表'},
-						component: () => import('../pages/index/staff/StaffMenu.vue')
-					},
-					{
-						path: '/staff/table',
-						name: 'stafftable',
-						meta: {title: '岗位成员'},
-						component: () => import('../pages/index/staff/StaffTable.vue')
-					}
 				]
 			},
 			{
@@ -156,20 +150,20 @@ const routes = [{
 				]
 			},
 		]
-	}	
+	}
 ]
 
 const router = new VueRouter({
 	routes
 })
 
-/*router.beforeEach(function(to,from,next){
-	if(!localStorage.getItem('token')){
+router.beforeEach(function(to,from,next){
+	if(!localStorage.getItem('logintoken')){
 		if(to.path!='/login'){
 			next('/login');
 		}
 	};
 	next()
-})*/
+})
 
 export default router

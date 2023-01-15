@@ -13,8 +13,8 @@ body {
 	line-height: 80px;
 	color: #FFFFFF;
 }
-.avatar{
-	margin:40px auto;
+.userface{
+	margin:40px 70px;
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
@@ -67,8 +67,14 @@ body {
 }
 
 /*表单*/
+.deptname .el-input{
+	width:120px
+}
 .el-input{
 	width:400px;
+}
+.deptname span{
+	margin-left: 5px;
 }
 .secondlist{
 	margin: 20px 0 0 40px;
@@ -150,7 +156,7 @@ body {
 }
 .register-layout{
 	width: 700px;
-	height: 550px;
+	height: 600px;
 }
 .register-layout .el-form{
 	margin:60px 100px;
